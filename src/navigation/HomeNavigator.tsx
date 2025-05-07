@@ -1,11 +1,14 @@
 import { NativeStackScreenProps, createNativeStackNavigator } from "@react-navigation/native-stack";
 import TelaPrincipal from "../layouts/TelaPrincipal";
 
+
+
 //Define quais as telas e os parâmetros de cada tela
 type RootStackParamList = {
-  TelaPrincipal: undefined; 
-  
+  TelaPrincipal: undefined;
+  CadastroPaciente: undefined;
 };
+
 
 //Cria a Stack (tipo de navegação onde as telas estão em uma "pilha")
 //com o RootStackParamList definindo as telas da stack

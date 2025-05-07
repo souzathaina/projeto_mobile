@@ -6,7 +6,9 @@ import Exemplo01 from '../components/Exemplo01';
 import Exemplo1 from '../components/Exemplo1';
 import Exemplo05_Text from '../components/Exemplo05_Text';
 import Exemplo06_TextInput from '../components/Exemplo06_TextInput';
-import Exemplo07_Image from '../components/Exemplo07_Image';
+import ExemploStyleView from '../components/ExemploStyleView';
+import CadastroPaciente from '../layouts/CadastroPaciente';
+import NotaAprovação from '../components/NotaAprovação';
 
 //Componente chamado TelaPrincipal que recebe 
 //PrincipalProps 
@@ -17,8 +19,8 @@ const TelaPrincipal = (props: PrincipalProps) => {
   return (
     <View
       style={[styles.tela]}>
-        <Exemplo07_Image/>
-        {/* <Exemplo1/> */}
+        <NotaAprovação nome={'Thainá'} nota1={5} nota2={5}/>
+        
     </View>
   );
 }
