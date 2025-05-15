@@ -1,29 +1,52 @@
 import React, { useState } from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { PrincipalProps } from '../navigation/HomeNavigator';
+import { View, Pressable, Text } from 'react-native';
 import { styles } from '../styles/styles';
-import Exemplo01 from '../components/Exemplo01';
-import Exemplo1 from '../components/Exemplo1';
-import Exemplo05_Text from '../components/Exemplo05_Text';
-import Exemplo06_TextInput from '../components/Exemplo06_TextInput';
-import ExemploStyleView from '../components/ExemploStyleView';
-import CadastroPaciente from '../layouts/CadastroPaciente';
-import NotaAprovação from '../components/NotaAprovação';
+import { PrincipalProps } from '../navigation/HomeNavigator';
 
-//Componente chamado TelaPrincipal que recebe 
-//PrincipalProps 
-//como parametro e constrói uma View com o componente 
-//HelloWorld e Exemplo1 dentro
 const TelaPrincipal = (props: PrincipalProps) => {
-  
+  const [mensagem, setMensagem] = useState('');
+
+  const receberTexto = (texto: string) => {
+    setMensagem(texto);
+  };
+
   return (
-    <View
-      style={[styles.tela]}>
-        <NotaAprovação nome={'Thainá'} nota1={5} nota2={5}/>
-        
+    <View style={styles.container}>
+      <Text style={styles.titulo1}>Bem-vindo!</Text>
+
+      {mensagem !== '' && (
+        <Text >Texto recebido: {mensagem}</Text>
+      )}
+
+      {/* Botão para a tela Campo de Texto */}
+      <Pressable
+        onPress={() =>
+          props.navigation.navigate("CampoDeTexto", { onPressBotao: receberTexto })
+        }
+        style={styles.botao}
+      >
+        <Text style={styles.texto_botao}>Campo de Texto</Text>
+      </Pressable>
+
+      {/* Botão para a tela Lista */}
+      <Pressable onPress={() => props.navigation.navigate("Lista")} style={styles.botao}>
+        <Text style={styles.texto_botao}>Lista</Text>
+      </Pressable>
+
+      {/* Botão para a tela Nota de Aprovação com parâmetros */}
+      <Pressable
+        onPress={() => props.navigation.navigate("NotaAprovacao", { nome: "João", nota1: 8, nota2: 7 })}
+        style={styles.botao}
+      >
+        <Text style={styles.texto_botao}>Nota de Aprovação</Text>
+      </Pressable>
+
+      <Pressable
+      onPress={() => props.navigation.navigate("CadastroPaciente")} style={styles.botao}>
+        <Text style={styles.textoBotao}>Cadastro de Paciente</Text>
+        </Pressable>
     </View>
   );
-}
+};
 
-//exportando o componente TelaPrincipal para ficar visível para outros arquivos
 export default TelaPrincipal;

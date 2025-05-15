@@ -8,31 +8,37 @@ type AlunoProps = {
 };
 
 const AlunoInfo = ({ nome, nota1, nota2 }: AlunoProps) => {
-  const media = ((nota1 + nota2) / 2).toFixed(1);
-  const status = parseFloat(media) >= 7.0 ? 'Aprovado' : 'Reprovado';
-  const statusStyle = parseFloat(media) >= 7.0 ? styles.aprovado : styles.reprovado
+  const media = ((nota1 + nota2) / 2);
+  const status = (media) >= 7.0 ? 'Aprovado' : 'Reprovado';
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.titulo}>{nome}</Text>
-      <Text style= {styles.nota}>Nota 1: {nota1}</Text>
-      <Text style= {styles.nota}>Nota 2: {nota2}</Text>
-      <Text style= {styles.media}>Média Final: {media}</Text>
-      <Text style={statusStyle}>Status: {status}</Text>
-      </View>
+    <View style={styles.container_Nota}>
+      <Text style={styles.titulo_NotaAprovação}>{nome}</Text>
+      <Text style={styles.nota}>Nota 1: {nota1}</Text>
+      <Text style={styles.nota}>Nota 2: {nota2}</Text>
+      <Text style={styles.media}>Média Final: {media}</Text>
+      {
+        media <= 7 ?
+          <Text style={{ fontSize: 20, color: 'red' }}>por pouco, REPROVADO</Text>
+          :
+          <Text style={{ fontSize: 20, color: 'green' }}>PARABÉNS APROVADO</Text>
+
+      }
+    </View>
+
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1, 
-    justifyContent: 'center', 
-    alignItems: 'center', 
+  container_Nota: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
     padding: 16,
     backgroundColor: '#f8f9fa',
   },
-  titulo: { 
-    fontWeight: 'bold', 
+  titulo_NotaAprovação: {
+    fontWeight: 'bold',
     fontSize: 25,
     color: '#343a40',
     marginBottom: 8,
@@ -47,18 +53,7 @@ const styles = StyleSheet.create({
     color: '#007bff',
     marginTop: 8,
   },
-  aprovado :{
-    fontSize:18,
-    fontWeight : 'bold', 
-    color:'#28a745',
-    marginTop: 4,
-  },
-  reprovado: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: 'dc3545',
-    marginTop: 4,
-  }
+
 });
 
 export default AlunoInfo;
